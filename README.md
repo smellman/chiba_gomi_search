@@ -4,8 +4,9 @@
 
 ## Demo
 
+http://smellman.github.io/chiba_gomi_search
 
-## データ
+## 加工したデータ
 
     ├── data
     │   ├── chiba_gomi_201402.csv (ごみ分類辞典のExcelファイルをコピペして作成したCSV)
@@ -19,4 +20,4 @@
 - [Papa Parse - Powerful CSV parser for Javascript](http://papaparse.com/)
 - [hail2u/jquery.table-filter](https://github.com/hail2u/jquery.table-filter)
 
-Papa ParseはPythonのSimpleHTTPServerがContent-Rangeに対応していないため、アドホックなパッチを適応しています。
+Papa Parseはテストで使ったPythonのSimpleHTTPServerがContent-Rangeに対応していないため、アドホックなパッチを適応しています。
