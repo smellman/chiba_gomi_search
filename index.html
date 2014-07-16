@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>千葉市ごみ分類辞典検索</title>
+
+    <!-- bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"></link>
+    
+    
+  </head>
+  <body>
+    <h1>千葉市ごみ分類辞典検索</h1>
+
+    <div class="container">
+      <table id="main_table" class="table">
+	<thead>
+	  <tr>
+	    <th>品目</th>
+	  <th>分別区分</th>
+	  <th>出す時の注意点</th>
+	  </tr>
+	</thead>
+      <tbody>
+      </tbody>
+      </table>
+    </div>
+
+    <!-- jquery -->
+    <script src="./jquery-2.1.1.min.js"></script>
+    <script src="./papaparse.js"></script>
+    <script src="./jquery.table-filter.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <script>
+     Papa.parse("./data/chiba_gomi_201402.utf8.csv", {
+       download: true,
+       step: function(row) {
+	 var append_value = "<tr><td>" + row.data[0][1] + "</td><td>" + row.data[0][2] + "</td><td>" + row.data[0][3] + "</td></tr>";
+	 $('#main_table tbody').append(append_value);
+       },
+       complete: function() {
+	 $(function () {
+           $("table").addTableFilter();
+	   $("input").attr("class", "form-control");
+	   $("input").attr("placeholder", "絞込したい文字を入力");
+	   $("label").hide();
+	 });
+       }
+     });
+    </script>
+  </body>
+</html>
+    
