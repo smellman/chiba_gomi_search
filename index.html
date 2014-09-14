@@ -1,61 +1,257 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8"></meta>
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>千葉市ごみ分類辞典検索</title>
 
     <!-- bootstrap -->
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
-    
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
     <!-- Optional theme -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"></link>
-    
-    
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+    <style>
+      body {
+        font-size: 15px;
+      }
+      h1 {
+        background: #F8A24E;
+        color: #FFF;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        margin-top: 0;
+        padding: 20px;
+        font-size: 200%;
+        font-weight: bold;
+      }
+      .header-link {
+        margin-bottom: 10px;
+      }
+      .glyphicon {
+        font-size: 90%;
+      }
+      table {
+        border: 1px solid #000;
+      }
+      thead {
+        background: #F8A24E;
+        color: #FFF;
+      }
+      .table > thead > tr > th {
+        text-align: center;
+        border: 1px solid #000;
+      }
+      th.name {
+        width: 40%;
+      }
+      th.category {
+        width: 20%;
+      }
+      th.attention {
+        width: 40%;
+      }
+      .table > tbody > tr > td {
+        border: 1px solid #000;
+      }
+      td {
+        background: #FFFDE6;
+        color: #000;
+      }
+      .bottle {
+        background: #4FA6CB;
+        color: #FFF;
+      }
+      .can {
+        background: #4FA6CB;
+        color: #FFF;
+      }
+      .petbottle {
+        background: #4FA6CB;
+        color: #FFF;
+      }
+      .paper {
+        background: #FC6A2A;
+        color: #FFF;
+      }
+      .cloth {
+        background: #F7478C;
+        color: #FFF;
+      }
+      .combustible {
+        background: #EF5346;
+        color: #FFF;
+      }
+      .incombustible {
+        background: #898989;
+        color: #FFF;
+      }
+      .toxic {
+        background: #DCDDDD;
+        color: #000;
+      }
+      .large {
+        background: #4BB877;
+        color: #FFF;
+      }
+      .recycle {
+        background: #F387B2;
+        color: #FFF;
+      }
+      .prohibit {
+        background: #FFF;
+        color: #000;
+      }
+      input, select {
+        vertical-align: 0.5em;
+      }
+      span.filter {
+        padding: 1px;
+        border: 1px solid #000;
+      }
+      .panel-body {
+        padding-bottom: 0;
+      }
+    </style>
+
   </head>
   <body>
-    <h1>千葉市ごみ分類辞典検索</h1>
 
     <div class="container">
-      <table id="main_table" class="table">
-	<thead>
-	  <tr>
-	    <th>品目</th>
-	  <th>分別区分</th>
-	  <th>出す時の注意点</th>
-	  </tr>
-	</thead>
-      <tbody>
-      </tbody>
-      </table>
+
+      <div class="row">
+        <h1>千葉市ごみ分類辞典検索</h1>
+        <div class="pull-right header-link"><a href="http://www.city.chiba.jp/kankyo/junkan/shushugyomu/gomitop.html" target="_blank"><span class="glyphicon glyphicon-chevron-right"></span> 千葉市：家庭ごみの分け方・出し方トップページ</a></div>
+      </div>
+
+      <div class="row">
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+            <p><span class="glyphicon glyphicon-search"></span> <strong>品目 で検索</strong></p>
+
+            <div class="form-group">
+              <input type="text" class="form-control item-filter" placeholder="検索したい品目名をここに入力してください">
+            </div>
+
+            <p><span class="glyphicon glyphicon-search"></span> <strong>分別区分 で検索</strong></p>
+            <div class="form-group">
+              <button type="button" class="btn btn-default btn-xs" id="button-check-on"><span class="glyphicon glyphicon-ok"></span> すべてにチェックを付ける</button>
+              <button type="button" class="btn btn-default btn-xs" id="button-check-off"><span class="glyphicon glyphicon-remove"></span> すべてのチェックをはずす</button>
+            </div>
+            <div class="form-group category">
+              <label class="checkbox-inline">
+                <input type="checkbox" class="category-filter" value="bottle" checked> <span class="filter bottle">びん</span>
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" class="category-filter" value="can" checked> <span class="filter can">缶</span>
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" class="category-filter" value="petbottle" checked> <span class="filter petbottle">ペットボトル</span>
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" class="category-filter" value="paper" checked> <span class="filter paper">古紙</span>
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" class="category-filter" value="cloth" checked> <span class="filter cloth">布類</span>
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" class="category-filter" value="combustible" checked> <span class="filter combustible">可燃</span>
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" class="category-filter" value="incombustible" checked> <span class="filter incombustible">不燃</span>
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" class="category-filter" value="toxic" checked> <span class="filter toxic">有害</span>
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" class="category-filter" value="large" checked> <span class="filter large">粗大</span>
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" class="category-filter" value="recycle" checked> <span class="filter recycle">リサイクル</span>
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" class="category-filter" value="prohibit" checked> <span class="filter prohibit">禁止</span>
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" class="category-filter" value="other" checked> <span class="filter">その他</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <table id="main_table" class="table">
+          <thead>
+            <tr>
+              <th class="name">品目</th>
+              <th class="category">分別区分</th>
+              <th class="attention">出す時の注意点</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+
     </div>
 
     <!-- jquery -->
     <script src="./jquery-2.1.1.min.js"></script>
     <script src="./papaparse.js"></script>
-    <script src="./jquery.table-filter.min.js"></script>
+    <script src="./jquery.ex-table-filter.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <script>
-     Papa.parse("./data/chiba_gomi_201402.utf8.csv", {
-       download: true,
-       step: function(row) {
-	 var append_value = "<tr><td>" + row.data[0][1] + "</td><td>" + row.data[0][2] + "</td><td>" + row.data[0][3] + "</td></tr>";
-	 $('#main_table tbody').append(append_value);
-       },
-       complete: function() {
-	 $(function () {
-           $("table").addTableFilter();
-	   $("input").attr("class", "form-control");
-	   $("input").attr("placeholder", "絞込したい文字を入力");
-	   $("label").hide();
-	 });
-       }
-     });
+      var filter;
+      Papa.parse("./data/chiba_gomi_201402.categorized.utf8.csv", {
+        download: true,
+        step: function(row) {
+          var append_value = "<tr><td>" + row.data[0][1] + "</td><td class=\"" + row.data[0][4] + "\">" + row.data[0][2] + "</td><td>" + row.data[0][3] + "</td></tr>";
+          $('#main_table tbody').append(append_value);
+        },
+        complete: function() {
+          filter = $('#main_table').exTableFilter({
+            api : true,
+            filters : {
+              0 : {
+                element : 'input.item-filter'
+              },
+              1 : {
+                element : 'input.category-filter',
+                onFiltering : function(api){
+                  var array = api.getCurrentFilterVal();
+                  if (typeof array === "undefined") {
+                    return false;
+                  }
+                  var flag = false;
+                  array.forEach(function (value, index, ar) {
+                    var cell = api.getCurrentCell();
+                    if ($(cell).hasClass(value)) {
+                      flag = true;
+                    }
+                  });
+                  return flag;
+                }
+              }
+            }
+          });
+        }
+      });
+      $(function() {
+        $('#button-check-on').click(function(){
+          $('.category-filter').prop("checked", true);
+          filter.filtering();
+        });
+        $('#button-check-off').click(function(){
+          $('.category-filter').prop("checked", false);
+          filter.filtering();
+        });
+      });
     </script>
   </body>
 </html>
-    
