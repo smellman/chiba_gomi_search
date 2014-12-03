@@ -4,7 +4,7 @@
     <meta charset="UTF-8"></meta>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <title>千葉市ごみ分類辞典検索</title>
+    <title>千葉市ごみ分類辞典検索 (2014年12月版)</title>
 
     <!-- bootstrap -->
     <!-- Latest compiled and minified CSS -->
@@ -16,7 +16,7 @@
     
   </head>
   <body>
-    <h1>千葉市ごみ分類辞典検索</h1>
+    <h1>千葉市ごみ分類辞典検索 (2014年12月版)</h1>
 
     <div class="container">
       <table id="main_table" class="table">
@@ -40,7 +40,7 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <script>
-     Papa.parse("./data/chiba_gomi_201402.utf8.csv", {
+     Papa.parse("./data/chiba_gomi_201412.utf8.csv", {
        download: true,
        step: function(row) {
 	 var append_value = "<tr><td>" + row.data[0][1] + "</td><td>" + row.data[0][2] + "</td><td>" + row.data[0][3] + "</td></tr>";
